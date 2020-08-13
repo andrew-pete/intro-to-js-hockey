@@ -10,18 +10,20 @@ This tutorial is perfect for anyone with _some_ experience of coding in language
 
 Now, don't run away (yet)! You can do it!! There are so many lovely tutorials for these coding fundamentals online, and I have full confidence that you can get it down. Then please come back xoxo.
 
-Assuming you've tinkered a bit with R, Python, Java, or any other modern coding language, this tutorial should be right up your alley if you want to get some exposure to JavaScript and analyzing/visualizing hockey data!
+Assuming you've tinkered a bit with R, Python, Java, or any other modern coding language, this tutorial should be right up your alley to get some exposure to JavaScript and analyzing/visualizing hockey data!
 
 ## What can I expect to learn?
-STOP! Have you checked out Meghan Hall's incredible [Intro to R with Hockey Data](https://meghan.rbind.io/post/learnr/)? If not, stop doing this and go check it out. This tutorial is actually borrowing the same tutorial structure, but adapting it for JavaScript. 
+__STOP!__ Have you seen Meghan Hall's incredible [Intro to R with Hockey Data](https://meghan.rbind.io/post/learnr/)? If not, stop doing this and go check it out. This tutorial borrows the same tutorial structure, but adapted for JavaScript. The point of that is to show how multiple tools can solve the same problem. Once you're experienced with multiple tools, you can decide which would be best for the problem at hand!
+
+Now, back to JavaScript!
 
 What started as a language to perform simple scripts and allow for wacky website interactivity has morphed--for better or worse--into the language that powers a majority of modern web applications. 
 
-You've probably been avoiding it for years. You make fun of it to your other enlightened friends. "There are no rules," you say. But secretly you want to know what all the hypes about. Suddenly, you've got this great project idea (an app, a website, a very specific visualization) and you have the daunting realization that it means you have to **finally** have to crack open a can o' JavaScript. 
+You've probably been avoiding it for years. You and your other code-enlightened friends poke fun at it at your cocktail parties. "There are no rules," you say. But deep down, you really want to know what all the hypes about. Then, out of the blue, a great project idea dawns on you (an app, a website, a very specific visualization) Then you have the daunting realization that it requires you have to **finally** have to crack open a can o' JavaScript. 
 
 Now you're here. Welcome. Pull up a chair, pop open a bottle of Pinot Noir (ideally from Washington State, IMO), and fire up the old text editor.
 
-The purpose of this tutorial is to teach some of the things that make JavaScript so powerful (and neat). By the end of this, you'll know how to filter data, manipulate data, and create a beautiful bar chart visualization using d3.js.
+The purpose of this tutorial is to give first-hand experience with the things that make JavaScript so powerful and, if I can be so bold, fun. By the end of this, you'll know how to filter data, manipulate data, and create a beautiful bar chart visualization using d3.js.
 
 ## Getting Started
 Before we code, you need the code! If you're familiar with git, [fork this repository](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) so you have a personal copy. Otherwise, click the green button on the main page and download the zip file.
@@ -51,11 +53,11 @@ for (let i = 0; i < numRows; i++) {
 
 ```
 
-If that's already making your brain hurt, don't fret. You can _always_ use `let`. It's just some people, myself including, are sticklers.
+If that's already making your brain hurt, don't fret. You can _always_ use `let`. It's just some people, myself included, are real syntax sticklers.
 
 
 ### Functions
-Functions are crucial to writing good, safe code. It encapsulates your code in a safe little bubble (called a "scope") and prevents a lot of mysterious side-effects if used correctly.
+Functions are crucial to writing good, safe code. It encapsulates your code in a safe little bubble (called a "scope") and prevents a lot of mysterious side-effects when used correctly. It also allows your code to be somewhat self-documenting if their given helpful names!
 
 They can be defined in a few different ways:
 ```javascript
@@ -75,15 +77,15 @@ const booGaryBetmanES6 = () => {
 };
 ```
 
-Implicit in the last two examples are that you can create these magical things called "anonymous functions." They can be assigned to variables, passed into other functions, or even executed immediately!
+Implicit in the last two examples is the notion that you can create these magical things called "anonymous functions." They can be assigned to variables, passed into other functions, or even executed immediately! If that doesn't make sense right now, it's not a big deal. Just know that functions are great and a pillar of JavaScript.
 
-The major divergence in JavaScript from most other coding languages is the fact that it treats functions just like any other primitive type (number, string, boolean, etc...). This is a characteristic of functional programming languages, which is equally powerful as it is mind-boggling. Passing in functions to functions?! Who needs that? 
+The major divergence in JavaScript from most other coding languages is the fact that it treats functions just like any other primitive type (number, string, boolean, etc...). Unlike other types, it is callable (meaning it can be executed). Like other types, it can be assigned to a variable, passed into functions, and returned from functions. This is a characteristic of functional programming languages, which is equally powerful as it is mind-boggling. Passing in functions to functions?! Who needs that? 
 
 (It's you. You do).
 
-If you've done Meghan's R tutorial, you should be familiar with the R functions `filter` and `mutate`. Those functions can be found in JavaScript, under the names `filter` and `map` respectively. They can be called on any array (a.k.a. list) of data, and they rely on a function being passed in as an argument.
+If you've done Meghan's R tutorial, you should be familiar with the R functions `filter` and `mutate`. Analogous functions can be found in JavaScript, under the names `filter` and `map` respectively. They can be called on any array (a.k.a. list) of data, and they rely on a function being passed in as an argument to work.
 
-In order to brush up on this, let's do a little example, followed by a challenge! It's a crucial building block even though it's not hockey related.
+In order to make sense of all of this, let's do a little example, followed by a challenge! It's a crucial building block even though it's not hockey related.
 
 #### Higher Order Functions - Example
 Let's first define a couple of ordinary functions, `add` and `multiply`. Each should anticipate two arguments `x` and `y` and return the result of the expected arithmetic.
@@ -99,6 +101,9 @@ function add(x, y) {
     return x + y;
 }
 
+/**
+ * But I'm too lazy
+ */
 function multiply(x, y) {
     return x * y;
 }
@@ -158,10 +163,12 @@ operate(function(x,y) {
 operate((x,y) => x - y, 3, 2);
 ```
 
-Wow! You're first higher-order function.
+Wow! Walking through your first higher-order function. That's huge!! Now it's time for a challenge.
 
 #### Higher Order Functions: Challenge Exercise
-Let's try something new. Navigate to the file `function.js` inside of the `modules` folder. There, we have a completed `forEach` function along with the skeletons of two other higher-order functions, `map` and `filter`.
+Let's try something new. Open this project up in your text editor of choice. Navigate to the file `functions.js` inside of the `modules` folder. There, we have a completed `forEach` function along with the skeletons of two other higher-order functions, `map` and `filter`.
+
+Your job is to fill out those functions so they perform as documented.
 
 First, you need to start up a local server __from the root of the project directory__.
 If you have python installed, the easiest way to do that is either:
@@ -171,11 +178,12 @@ For python version < 3
 python -m SimpleHTTPServer 8000
 ```
 
-Python version > 3
+Python version >= 3
 ```
 python3 -m http.server 8000
 ```
 
-Then open up a browser and go to localhost:8000/test
+Then open up a browser and go to [localhost:8000/test.html](localhost:8000/test.html)
 
-The goal of 
+Your test results will appear on the screen, with details in the developer console.
+If you're stuck, a documented solution for both functions can be found in the `solutions/functions.js` file, but try it out yourself first!
